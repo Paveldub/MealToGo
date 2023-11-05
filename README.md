@@ -1,0 +1,1 @@
+# MealToGo React Native project

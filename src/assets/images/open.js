@@ -1,5 +1,4 @@
 export default `<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 511.952 511.952" style="enable-background:new 0 0 511.952 511.952;" xml:space="preserve">
 <path style="fill:#F2F2F2;" d="M410.643,161.145L43.709,251.811l137.6-230.4L410.643,161.145z M74.643,228.345l297.6-73.6

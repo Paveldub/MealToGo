@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from "react";
-import { Text, Image, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
+import { Spacer } from "../../../components/spacer.component";
 
 import star from "../../../assets/images/star";
 import open from "../../../assets/images/open";
@@ -69,13 +70,19 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <RestaurantCardCover key={name} />
+      <Image source={{ uri: photos[0] }} key={photos[0]} />
       <Info>
         <Title>{name}</Title>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((index) => (
+              <SvgXml
+                xml={star}
+                width={20}
+                height={20}
+                key={Math.random(`${star}_${index}`)}
+              />
             ))}
           </Rating>
           <SectionEnd>
@@ -84,10 +91,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 CLOSED TEMPORARILY
               </Text>
             )}
-            <View style={{ paddingLeft: 16 }} />
+            <Spacer variant="left.large" />
             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            <View style={{ paddingLeft: 16 }} />
-            <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+            <Spacer variant="left.large" />
+            <Image source={{ uri: icon }} key={icon} width={15} height={15} />
           </SectionEnd>
         </Section>
         <Address>{address}</Address>

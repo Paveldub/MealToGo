@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, Image } from "react-native";
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
@@ -91,10 +91,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 CLOSED TEMPORARILY
               </Text>
             )}
-            <Spacer variant="left.large" />
-            {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            <Spacer variant="left.large" />
-            <Image source={{ uri: icon }} key={icon} width={15} height={15} />
+            <Spacer position="left" size="large">
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Image source={{ uri: icon }} key={icon} width={15} height={15} />
+            </Spacer>
           </SectionEnd>
         </Section>
         <Address>{address}</Address>

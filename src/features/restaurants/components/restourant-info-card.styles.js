@@ -14,6 +14,7 @@ export const RestaurantCard = styled(Card)`
 
 export const RestaurantCardCover = styled(Card.Cover)`
   background-color: ${(props) => props.theme.colors.text.inverse};
+  padding: 12px;
 `;
 
 export const Info = styled.View`

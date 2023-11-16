@@ -10,7 +10,6 @@
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
-    "@expo-google-fonts/inter": "^0.2.3",
     "@expo-google-fonts/lato": "^0.2.3",
     "@expo-google-fonts/oswald": "^0.2.3",
     "@react-native-community/masked-view": "^0.1.11",

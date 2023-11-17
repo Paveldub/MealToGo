@@ -36,6 +36,7 @@ export const RestaurantsScreen = () => {
           <Loading size={50} animating={true} color={MD2Colors.blue300} />
         </LoadingContainer>
       )}
+
       <SearchContainer>
         <Searchbar placeholder="Search" />
       </SearchContainer>

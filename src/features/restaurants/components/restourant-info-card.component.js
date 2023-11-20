@@ -28,6 +28,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -44,7 +45,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                 xml={star}
                 width={20}
                 height={20}
-                key={Math.random(`${star}_${index}`)}
+                key={Math.random(`${star}_${placeId}_${index}`)}
               />
             ))}
           </Rating>

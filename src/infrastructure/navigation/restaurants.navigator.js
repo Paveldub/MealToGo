@@ -6,11 +6,8 @@ const RestaurantStack = createStackNavigator();
 
 export const RestaurantsNavigator = () => {
   return (
-    <RestaurantStack.Navigator>
-      <RestaurantStack.Screen
-        name="restaurants"
-        component={RestaurantsScreen}
-      />
+    <RestaurantStack.Navigator headerMode="none">
+      <RestaurantStack.Screen name="Restauants" component={RestaurantsScreen} />
     </RestaurantStack.Navigator>
   );
 };

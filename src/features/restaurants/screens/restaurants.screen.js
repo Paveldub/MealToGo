@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Pressable, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import { FlatList } from "react-native";
 import styled from "styled-components";
@@ -45,7 +45,11 @@ export const RestaurantsScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate("RestauantsDetail")}
+              onPress={() =>
+                navigation.navigate("RestauantsDetail", {
+                  restaurant: item,
+                })
+              }
             >
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />

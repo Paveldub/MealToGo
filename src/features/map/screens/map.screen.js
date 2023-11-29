@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import MapView, { Callout, Marker } from "react-native-maps";
+import MapView, { Marker, Callout } from "react-native-maps";
 import styled from "styled-components";
 import { Search } from "../components/search.component";
 import { LocationContext } from "../../../services/location/location.context";
@@ -11,7 +11,7 @@ const Map = styled(MapView)`
   width: 100%;
 `;
 
-export const MapScreen = () => {
+export const MapScreen = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -24,7 +24,7 @@ export const MapScreen = () => {
     const southwestLat = viewport.southwest.lat;
 
     setLatDelta(northeastLat - southwestLat);
-  }, [location, viewport]);
+  }, [viewport.northeast.lat, viewport.southwest.lat]);
 
   return (
     <>
@@ -48,7 +48,13 @@ export const MapScreen = () => {
                 }}
                 title={restaurant.name}
               >
-                <Callout>
+                <Callout
+                  onPress={() =>
+                    navigation.navigate("RestauantsDetail", {
+                      restaurant: restaurant,
+                    })
+                  }
+                >
                   <MapCallout restaurant={restaurant} />
                 </Callout>
               </Marker>

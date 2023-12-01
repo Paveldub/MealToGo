@@ -22,6 +22,7 @@ export const RestaurantsNavigator = () => {
       <RestaurantStack.Screen
         name="RestauantsDetail"
         component={RestaurantDetailsScreen}
+        options={{ headerShown: false }}
       />
     </RestaurantStack.Navigator>
   );

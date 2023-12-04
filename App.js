@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "react-native-gesture-handler";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
@@ -7,7 +8,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 
 import { theme } from "./src/infrastructure/theme";
 
@@ -28,8 +29,24 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    signInWithEmailAndPassword(auth, "dubstr1@gmail.com", "password")
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("user :", user);
+        setIsAuthenticated(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -39,6 +56,10 @@ export default function App() {
   });
 
   if (!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
     return null;
   }
 

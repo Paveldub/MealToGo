@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React from "react";
 import "react-native-gesture-handler";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
@@ -16,24 +15,9 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 import { Navigation } from "./src/infrastructure/navigation";
-import { auth } from "./src/firebase";
+import { AuthenticationContextProvider } from "./src/services/auth/auth.context";
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    signInWithEmailAndPassword(auth, "dubstr1@gmail.com", "password")
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("user :", user);
-        setIsAuthenticated(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -46,20 +30,18 @@ export default function App() {
     return null;
   }
 
-  if (!isAuthenticated) {
-    return null;
-  }
-
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

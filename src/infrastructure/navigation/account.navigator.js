@@ -1,6 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Text, View } from "react-native";
+import { AccountScreen } from "../../features/account/screens/account.screen";
+import { LoginScreen } from "../../features/account/screens/login.screen";
+import { RegisterScreen } from "../../features/account/screens/register.screen";
 
 const Stack = createStackNavigator();
 
@@ -10,20 +12,17 @@ export const AccountNavigator = () => {
       <Stack.Screen
         name="Main"
         options={{ headerShown: false }}
-        component={() => (
-          <View>
-            <Text>Account Screen</Text>
-          </View>
-        )}
+        component={AccountScreen}
       />
       <Stack.Screen
         name="Login"
         options={{ headerShown: false }}
-        component={() => (
-          <View>
-            <Text>Login Screen</Text>
-          </View>
-        )}
+        component={LoginScreen}
+      />
+      <Stack.Screen
+        name="Register"
+        options={{ headerShown: false }}
+        component={RegisterScreen}
       />
     </Stack.Navigator>
   );

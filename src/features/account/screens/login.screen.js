@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 
-import { AccountBackground, AccountCover } from "../components/account.styles";
+import {
+  AccountBackground,
+  AccountCover,
+  ErrorContainer,
+} from "../components/account.styles";
 import { AuthenticationContext } from "../../../services/auth/auth.context";
 import { AuthInput, AuthButton } from "../components/account.styles";
 import { Spacer } from "../../../components/Spacer/spacer.component";
 import { Text } from "../../../components/Typography/Typography.component";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, error } = useContext(AuthenticationContext);
@@ -34,9 +38,9 @@ export const LoginScreen = () => {
         />
       </Spacer>
       {error && (
-        <Spacer size="large">
+        <ErrorContainer size="large">
           <Text variant="error">{error}</Text>
-        </Spacer>
+        </ErrorContainer>
       )}
       <Spacer size="large">
         <AuthButton
@@ -45,6 +49,11 @@ export const LoginScreen = () => {
           onPress={() => onLogin(email, password)}
         >
           Login
+        </AuthButton>
+      </Spacer>
+      <Spacer size="large">
+        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+          Back
         </AuthButton>
       </Spacer>
     </AccountBackground>

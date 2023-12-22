@@ -9,6 +9,7 @@
 
 const { onRequest } = require("firebase-functions/v2/https");
 const { geocodeRequest } = require("./geocode/index");
+const { placeRequest } = require("./places/index");
 // const logger = require("firebase-functions/logger");
 
 // Create and deploy your first functions
@@ -16,4 +17,8 @@ const { geocodeRequest } = require("./geocode/index");
 
 exports.geocode = onRequest((request, response) => {
   geocodeRequest(request, response);
+});
+
+exports.placesNearby = onRequest((request, response) => {
+  placeRequest(request, response);
 });
